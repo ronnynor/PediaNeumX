@@ -250,8 +250,8 @@ private val highContrastDarkColorScheme = darkColorScheme(
 
 val commonBackgroundGradient: Brush = Brush.linearGradient(
     colors = listOf(backgroundDarkGradientFrom, darkBackgroundGradientTo),
-    start = Offset(0f, 0f),
-    end = Offset.Infinite
+    start = Offset.Infinite,
+    end = Offset(0f, 0f)
 )
 
 
