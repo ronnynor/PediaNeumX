@@ -3,17 +3,16 @@ package com.qnecesitas.pedianeumx.navigation
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.qnecesitas.pedianeumx.ui.camera.CameraView
+import com.qnecesitas.pedianeumx.ui.camera.CameraViewModel
 import com.qnecesitas.pedianeumx.ui.splash.SplashView
-import kotlinx.coroutines.delay
 
 @Composable
 fun MainNavigation() {
@@ -52,9 +51,11 @@ fun NavGraphBuilder.generateCamera(
         arguments = Routes.Camera.arguments()
     ){
 
-        Surface(color = Color.White) {
 
-        }
+        val cameraViewModel = hiltViewModel<CameraViewModel>()
+        CameraView(
+            viewModel = cameraViewModel
+        )
 
     }
 }
