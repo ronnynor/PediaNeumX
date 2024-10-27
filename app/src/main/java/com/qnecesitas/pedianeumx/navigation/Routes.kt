@@ -6,4 +6,6 @@ sealed class Routes(route: String) : BaseScreen(route = route) {
 
     data object Camera: Routes(route = "camera")
 
+    data object Result: Routes(route = "result")
+
 }

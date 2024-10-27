@@ -39,6 +39,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.qnecesitas.pedianeumx.R
 import com.qnecesitas.pedianeumx.ui.permissions.PermissionsUI
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -90,7 +92,13 @@ fun CameraView(
                             .data(viewModel.capturedImageUri)
                             .crossfade(true)
                             .build(),
-                        contentDescription = stringResource(R.string.radiography)
+                        contentDescription = stringResource(R.string.radiography),
+                        onSuccess = {
+                            viewModel.scope.launch{
+                                delay(2000)
+                                viewModel.toResultView()
+                            }
+                        }
                     )
 
                 }

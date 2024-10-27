@@ -9,11 +9,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
+import com.qnecesitas.pedianeumx.navigation.Routes
+import com.qnecesitas.pedianeumx.ui.main.interfaces.IViewModelNavigation
+import com.qnecesitas.pedianeumx.ui.main.interfaces.IViewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import java.io.File
 import javax.inject.Inject
 
-interface ICameraViewModel{
+interface ICameraViewModel :
+    IViewModelScope,
+    IViewModelNavigation{
 
     var capturedImageUri: Uri?
     fun takePhoto(
@@ -22,6 +30,8 @@ interface ICameraViewModel{
         onImageCaptured: ((Uri?) -> Unit)? = null,
         onError: ((Exception) -> Unit)? = null,
     )
+
+    fun toResultView()
 }
 
 abstract class BaseCameraViewModel :
@@ -31,6 +41,9 @@ abstract class BaseCameraViewModel :
 class CameraViewModel @Inject constructor(): BaseCameraViewModel() {
 
     override var capturedImageUri: Uri? by mutableStateOf(null)
+    override lateinit var navController: NavHostController
+    override val scope: CoroutineScope
+        get() = viewModelScope
 
 
     override fun takePhoto(
@@ -63,6 +76,11 @@ class CameraViewModel @Inject constructor(): BaseCameraViewModel() {
         )
 
     }
+
+    override fun toResultView(){
+        navController.navigate(Routes.Result.route)
+    }
+
 
 
 }
