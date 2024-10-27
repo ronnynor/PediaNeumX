@@ -4,7 +4,10 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,8 +16,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import com.qnecesitas.pedianeumx.ui.main.interfaces.ITopAppBar
+import com.qnecesitas.pedianeumx.ui.theme.commonTopAppBarGradient
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,18 +64,22 @@ fun MainTopBar(
     }
 
     val appBarColors = TopAppBarDefaults.topAppBarColors(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        containerColor = colorResource(R.color.transparent),
         titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
         actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
     )
 
-    TopAppBar(
-        title = titleContent,
-        modifier = modifier,
-        navigationIcon = {navigationIcon},
-        actions = {actionIcon},
-        colors = appBarColors
-    )
+    Box(
+        modifier.background(brush = commonTopAppBarGradient)
+    ) {
+        TopAppBar(
+            title = titleContent,
+            modifier = Modifier.fillMaxWidth(),
+            navigationIcon = { navigationIcon },
+            actions = { actionIcon },
+            colors = appBarColors
+        )
+    }
 }
 
 @Composable
