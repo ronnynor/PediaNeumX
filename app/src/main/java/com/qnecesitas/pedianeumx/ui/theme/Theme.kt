@@ -263,16 +263,16 @@ fun PediaNeumXTheme(
     content: @Composable () -> Unit
 ) {
 
-    //TODO Ronny Likely I won't allow this
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> darkColorScheme()
-        else -> lightColorScheme()
-    }
+//    val colorScheme = when {
+//        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+//            val context = LocalContext.current
+//            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+//        }
+//
+//        darkTheme -> darkColorScheme()
+//        else -> lightColorScheme()
+//    }
+    val colorScheme = darkScheme
 
     val view = LocalView.current
     if (!view.isInEditMode) {

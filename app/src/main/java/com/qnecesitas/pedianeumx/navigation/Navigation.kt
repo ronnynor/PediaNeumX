@@ -12,15 +12,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.qnecesitas.pedianeumx.ui.camera.CameraView
 import com.qnecesitas.pedianeumx.ui.camera.CameraViewModel
+import com.qnecesitas.pedianeumx.ui.main.IMainViewModel
 import com.qnecesitas.pedianeumx.ui.splash.SplashView
 
 @Composable
-fun MainNavigation() {
+fun MainNavigation(
+    mainViewModel: IMainViewModel
+) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Routes.Splash.route) {
-        generateSplash(navController)
-        generateCamera(navController)
+        generateSplash(navController, mainViewModel)
+        generateCamera(navController, mainViewModel)
     }
 
 
@@ -28,7 +31,8 @@ fun MainNavigation() {
 
 
 fun NavGraphBuilder.generateSplash(
-    navController: NavHostController
+    navController: NavHostController,
+    mainViewModel: IMainViewModel
 ){
     composable(
         route = Routes.Splash.route,
@@ -44,7 +48,8 @@ fun NavGraphBuilder.generateSplash(
 }
 
 fun NavGraphBuilder.generateCamera(
-    navController: NavHostController
+    navController: NavHostController,
+    mainViewModel: IMainViewModel
 ){
     composable(
         route = Routes.Camera.route,
