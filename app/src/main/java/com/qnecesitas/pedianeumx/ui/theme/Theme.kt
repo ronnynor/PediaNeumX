@@ -276,27 +276,27 @@ fun PediaNeumXTheme(
 //    }
     val colorScheme = highContrastDarkColorScheme
 
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val insetsController = window.insetsController
-                if (darkTheme) {
-                    insetsController?.setSystemBarsAppearance(
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-                    )
-                } else {
-                    insetsController?.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS)
-                }
-            } else {
-                ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
-            }
-        }
-    }
+//    val view = LocalView.current
+//    if (!view.isInEditMode) {
+//        SideEffect {
+//            val window = (view.context as Activity).window
+//            window.statusBarColor = colorScheme.background.toArgb()
+//
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                val insetsController = window.insetsController
+//                if (darkTheme) {
+//                    insetsController?.setSystemBarsAppearance(
+//                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+//                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+//                    )
+//                } else {
+//                    insetsController?.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS)
+//                }
+//            } else {
+//                ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
+//            }
+//        }
+//    }
 
     MaterialTheme(
         colorScheme = colorScheme,
