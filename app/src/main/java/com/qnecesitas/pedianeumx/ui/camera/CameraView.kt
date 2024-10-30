@@ -78,8 +78,8 @@ fun CameraView(
                 .padding(50.dp),
             targetState = viewModel.capturedImageUri,
             label = "Camera CrossFade"
-        ) {
-            if (viewModel.capturedImageUri != null) {
+        ) { capturedImageUri->
+            if (capturedImageUri != null) {
 
                 Surface(
                     modifier = Modifier.rotate(12f),

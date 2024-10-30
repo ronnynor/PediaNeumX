@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.qnecesitas.pedianeumx.navigation.Routes
-import com.qnecesitas.pedianeumx.ui.main.interfaces.IViewModelNavigation
+import com.qnecesitas.pedianeumx.navigation.IViewModelNavigation
 import com.qnecesitas.pedianeumx.ui.main.interfaces.IViewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
