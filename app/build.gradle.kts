@@ -86,6 +86,10 @@ dependencies {
     //Image Async load
     implementation(libs.coil.compose)
 
+    //Tensorflow
+    implementation(libs.tensorflow.lite)
+    implementation(libs.tensorflow.lite.support)
+
     // Tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
 }

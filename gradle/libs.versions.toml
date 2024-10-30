@@ -17,6 +17,8 @@ junit = "4.13.2"
 kotlin = "2.0.10"
 ksp = "2.0.10-1.0.24"
 coil = "2.2.2"
+tensorflow-lite = "2.10.0"
+tensorflow-lite-support = "0.4.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
@@ -54,6 +56,8 @@ hilt-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", 
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+tensorflow-lite = {module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflow-lite"}
+tensorflow-lite-support = {module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflow-lite-support"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
