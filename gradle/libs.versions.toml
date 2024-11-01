@@ -19,6 +19,7 @@ ksp = "2.0.10-1.0.24"
 coil = "2.2.2"
 tensorflow-lite = "2.10.0"
 tensorflow-lite-support = "0.4.0"
+can_hub_version = "4.6.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
@@ -58,6 +59,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 tensorflow-lite = {module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflow-lite"}
 tensorflow-lite-support = {module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflow-lite-support"}
+android-image-cropper = { module = "com.vanniktech:android-image-cropper", version.ref = "can_hub_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

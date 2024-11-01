@@ -3,4 +3,6 @@
     <string name="grant_access">Grant access</string>
     <string name="take_image">Take image</string>
     <string name="radiography">Radiography</string>
+    <string name="error">Error</string>
+    <string name="error_could_not_load_image">Sorry, we couldn\'t load your image</string>
 </resources>

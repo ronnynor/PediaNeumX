@@ -10,9 +10,9 @@ import androidx.compose.runtime.getValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavHostController
+import com.qnecesitas.pedianeumx.navigation.DefaultSetGetParamsViewModel
 import com.qnecesitas.pedianeumx.navigation.Routes
-import com.qnecesitas.pedianeumx.navigation.IViewModelNavigation
+import com.qnecesitas.pedianeumx.navigation.IViewModelSetGetParams
 import com.qnecesitas.pedianeumx.ui.main.interfaces.IViewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 interface ICameraViewModel :
     IViewModelScope,
-    IViewModelNavigation{
+    IViewModelSetGetParams{
 
     var capturedImageUri: Uri?
     fun takePhoto(
@@ -31,17 +31,18 @@ interface ICameraViewModel :
         onError: ((Exception) -> Unit)? = null,
     )
 
-    fun toResultView()
+    fun toCropperView()
 }
 
 abstract class BaseCameraViewModel :
-    ViewModel(), ICameraViewModel
+    ViewModel(),
+    ICameraViewModel,
+    IViewModelSetGetParams by DefaultSetGetParamsViewModel()
 
 @HiltViewModel
 class CameraViewModel @Inject constructor(): BaseCameraViewModel() {
 
     override var capturedImageUri: Uri? by mutableStateOf(null)
-    override lateinit var navController: NavHostController
     override val scope: CoroutineScope
         get() = viewModelScope
 
@@ -77,8 +78,9 @@ class CameraViewModel @Inject constructor(): BaseCameraViewModel() {
 
     }
 
-    override fun toResultView(){
-        navController.navigate(Routes.Result.route)
+    override fun toCropperView(){
+        setParam(Routes.Cropper.CROPPER_IMAGE_URI_PARAM, capturedImageUri)
+        navController.navigate(Routes.Cropper.route)
     }
 
 

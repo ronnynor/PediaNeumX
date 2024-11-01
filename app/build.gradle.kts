@@ -83,8 +83,9 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
 
-    //Image Async load
+    //Image libraries
     implementation(libs.coil.compose)
+    implementation(libs.android.image.cropper)
 
     //Tensorflow
     implementation(libs.tensorflow.lite)

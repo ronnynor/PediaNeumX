@@ -2,7 +2,9 @@ package com.qnecesitas.pedianeumx.ui.camera
 
 import android.Manifest
 import android.net.Uri
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
@@ -37,6 +39,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageView
 import com.qnecesitas.pedianeumx.R
 import com.qnecesitas.pedianeumx.ui.permissions.PermissionsUI
 import kotlinx.coroutines.delay
@@ -62,7 +66,10 @@ fun CameraView(
         snackbarHostState = remember { SnackbarHostState()},
     ){
 
+
+
     }
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         val imageCapture = remember { ImageCapture.Builder().build() }
@@ -96,7 +103,7 @@ fun CameraView(
                         onSuccess = {
                             viewModel.scope.launch{
                                 delay(2000)
-                                viewModel.toResultView()
+                                viewModel.toCropperView()
                             }
                         }
                     )
@@ -111,7 +118,7 @@ fun CameraView(
             modifier = Modifier
                 .size(140.dp)
                 .align(Alignment.BottomCenter)
-                .pointerInput(Unit){
+                .pointerInput(Unit) {
                     detectTapGestures(
                         onPress = {
                             isPressed = true
@@ -145,9 +152,9 @@ fun CameraView(
         }
     }
 
+
+
 }
-
-
 
 @Composable
 fun CameraPreviewer(
