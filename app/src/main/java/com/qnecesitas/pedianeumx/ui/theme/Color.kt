@@ -223,5 +223,7 @@ val darkBackgroundGradientTo = Color(0xFF1E1F22)
 val darkTopAppBarGradientFrom = Color(0xFF2B2D30)
 val darkTopAppBarGradientTo = Color(0xFF404F2A)
 
-
+val extraIconColor1 = Color(0xFFFFEA00)
+val extraIconColor2 = Color(0xFFFC9000)
+val extraIconColor3 = Color(0xFF00E5FF)
 

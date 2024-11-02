@@ -5,4 +5,10 @@
     <string name="radiography">Radiography</string>
     <string name="error">Error</string>
     <string name="error_could_not_load_image">Sorry, we couldn\'t load your image</string>
+    <string name="diagnosis">Diagnosis:</string>
+    <string name="precision">Precision:</string>
+    <string name="pneumonia">Pneumonia</string>
+    <string name="non_pneumonia">Non Pneumonia</string>
+    <string name="result_needs_radiologist">The result needs to be corroborated by a radiologist, AI can make mistakes</string>
+    <string name="warning">Warning</string>
 </resources>
