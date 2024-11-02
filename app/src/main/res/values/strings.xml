@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PediaNeumX</string>
+    <string name="app_name" translatable="false">PediaNeumX</string>
     <string name="grant_access">Grant access</string>
     <string name="take_image">Take image</string>
     <string name="radiography">Radiography</string>

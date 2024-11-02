@@ -1,0 +1,16 @@
+<resources>
+    <string name="grant_access">Garantizar acceso</string>
+    <string name="take_image">Tomar foto</string>
+    <string name="radiography">Radiografía</string>
+    <string name="error">Error</string>
+    <string name="error_could_not_load_image">Lo sentimos, no pudimos cargar su imagen</string>
+    <string name="diagnosis">Diagnóstico:</string>
+    <string name="precision">Precisión:</string>
+    <string name="pneumonia">Neumonía</string>
+    <string name="non_pneumonia">No Neumonía</string>
+    <string name="result_needs_radiologist">El resultado debe ser corroborado por un radiólogo, la IA puede cometer errores</string>
+    <string name="warning">Advertencia</string>
+    <string name="crop">Recortar</string>
+    <string name="repeat">Repetir</string>
+    <string name="results">Resultados</string>
+</resources>
