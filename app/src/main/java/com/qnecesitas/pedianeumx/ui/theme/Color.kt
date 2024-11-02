@@ -220,6 +220,9 @@ val surfaceContainerHighestDarkHighContrast = Color(0xFF33362E)
 val darkBackgroundGradientFrom = Color(0xFF000000)
 val darkBackgroundGradientTo = Color(0xFF1E1F22)
 
+val darkBottomBarGradientFrom = Color(0xFF2B2D30)
+val darkBottomBarGradientTo = Color(0xFF1C1E1C)
+
 val darkTopAppBarGradientFrom = Color(0xFF2B2D30)
 val darkTopAppBarGradientTo = Color(0xFF404F2A)
 

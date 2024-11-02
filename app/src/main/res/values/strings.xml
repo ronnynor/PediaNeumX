@@ -11,4 +11,7 @@
     <string name="non_pneumonia">Non Pneumonia</string>
     <string name="result_needs_radiologist">The result needs to be corroborated by a radiologist, AI can make mistakes</string>
     <string name="warning">Warning</string>
+    <string name="crop">Crop</string>
+    <string name="repeat">Repeat</string>
+
 </resources>

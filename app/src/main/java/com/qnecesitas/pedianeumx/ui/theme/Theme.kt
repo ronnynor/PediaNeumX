@@ -256,6 +256,12 @@ val commonTopAppBarGradient: Brush = Brush.linearGradient(
     end = Offset(0f, 0f)
 )
 
+val commonBottomAppBarGradient: Brush = Brush.linearGradient(
+    colors = listOf(darkBottomBarGradientFrom, darkBottomBarGradientTo),
+    start = Offset.Infinite,
+    end = Offset(0f, 0f)
+)
+
 
 @Composable
 fun PediaNeumXTheme(

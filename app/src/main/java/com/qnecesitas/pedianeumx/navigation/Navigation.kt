@@ -4,7 +4,11 @@ import android.net.Uri
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -19,7 +23,6 @@ import com.qnecesitas.pedianeumx.ui.main.IMainViewModel
 import com.qnecesitas.pedianeumx.ui.result.ResultView
 import com.qnecesitas.pedianeumx.ui.result.ResultViewModel
 import com.qnecesitas.pedianeumx.ui.splash.SplashView
-import okhttp3.Route
 
 @Composable
 fun MainNavigation(
@@ -49,10 +52,16 @@ fun NavGraphBuilder.generateSplash(
         exitTransition = { fadeOut(animationSpec = tween(1000)) },
     ){
 
+        LaunchedEffect(Unit) {
+            mainViewModel.topAppBarComposer.apply {
+                visible = false
+            }
+            mainViewModel.bottomAppBarComposer.visible = false
+        }
+
         SplashView(navController)
 
     }
-
 }
 
 fun NavGraphBuilder.generateCamera(
@@ -64,6 +73,13 @@ fun NavGraphBuilder.generateCamera(
         arguments = Routes.Camera.arguments()
     ){
 
+        LaunchedEffect(Unit) {
+            mainViewModel.topAppBarComposer.apply {
+                visible = true
+                showDefaultAppNameTitle()
+            }
+            mainViewModel.bottomAppBarComposer.visible = false
+        }
 
         val cameraViewModel = hiltViewModel<CameraViewModel>()
         cameraViewModel.navController = navController
@@ -77,15 +93,26 @@ fun NavGraphBuilder.generateCamera(
 
 fun NavGraphBuilder.generateResult(
     navController: NavHostController,
-    minViewModel: IMainViewModel
+    mainViewModel: IMainViewModel
 ){
-
     composable(
         route = Routes.Result.route,
         arguments = Routes.Result.arguments()
     ){
 
+        LaunchedEffect(Unit) {
+            mainViewModel.topAppBarComposer.apply {
+                visible = true
+                showDefaultAppNameTitle()
+            }
+            mainViewModel.bottomAppBarComposer.visible = true
+        }
+
         val viewModel = hiltViewModel<ResultViewModel>()
+        viewModel.navController = navController
+        viewModel.GetParam<Uri>(Routes.Result.RESULT_IMAGE_URI_PARAM) { uri->
+            viewModel.capturedImageUri = uri
+        }
 
         ResultView(viewModel)
 
@@ -94,9 +121,8 @@ fun NavGraphBuilder.generateResult(
 
 fun NavGraphBuilder.generateCropper(
     navController: NavHostController,
-    minViewModel: IMainViewModel
+    mainViewModel: IMainViewModel
 ){
-
     composable(
         route = Routes.Cropper.route,
         arguments = Routes.Cropper.arguments()
@@ -104,6 +130,19 @@ fun NavGraphBuilder.generateCropper(
 
         val viewModel = hiltViewModel<CropperViewModel>()
         viewModel.navController = navController
+
+        LaunchedEffect(Unit) {
+            mainViewModel.topAppBarComposer.apply {
+                visible = true
+                showDefaultAppNameTitle()
+            }
+            mainViewModel.bottomAppBarComposer.apply {
+                visible = true
+                showCropDefaultAction {
+                    viewModel.cropImage = true
+                }
+            }
+        }
 
         viewModel.GetParam<Uri>(Routes.Cropper.CROPPER_IMAGE_URI_PARAM) { uri->
             viewModel.capturedImageUri = uri

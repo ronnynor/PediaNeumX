@@ -7,28 +7,22 @@ import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.stringResource
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.qnecesitas.pedianeumx.navigation.MainNavigation
+import com.qnecesitas.pedianeumx.ui.main.MainBottomBar
 import com.qnecesitas.pedianeumx.ui.main.MainTopBar
 import com.qnecesitas.pedianeumx.ui.main.MainViewModel
 import com.qnecesitas.pedianeumx.ui.main.interfaces.ISystemAppBar
-import com.qnecesitas.pedianeumx.ui.main.interfaces.ITopAppBar
 import com.qnecesitas.pedianeumx.ui.theme.PediaNeumXTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,15 +37,24 @@ class MainActivity : ComponentActivity() {
 
                 val viewModel = hiltViewModel<MainViewModel>()
 
-                handleDefaultTopAppBar(viewModel.topAppBarComposer)
                 handleDefaultSystemBar(viewModel.systemAppBarComposer)
 
                 Scaffold(
-                    topBar = {MainTopBar(viewModel = viewModel.topAppBarComposer)}
-                ){
-
+                    topBar = {
+                        if (viewModel.topAppBarComposer.visible) {
+                            MainTopBar(viewModel = viewModel.topAppBarComposer)
+                        }
+                    },
+                    bottomBar = {
+                        if (viewModel.bottomAppBarComposer.visible) {
+                            MainBottomBar(viewModel = viewModel.bottomAppBarComposer)
+                        }
+                    }
+                ){ innerPadding->
                     Surface(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
                         color = MaterialTheme.colorScheme.background
                     ) {
                         MainNavigation(viewModel)
@@ -96,14 +99,4 @@ class MainActivity : ComponentActivity() {
 
     }
 
-    fun handleDefaultTopAppBar(topAppBar: ITopAppBar) {
-        topAppBar.title = {
-            Text(
-                text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.titleLarge.copy(
-                    color = MaterialTheme.colorScheme.primaryContainer
-                )
-            )
-        }
-    }
 }

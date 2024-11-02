@@ -7,18 +7,20 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import com.qnecesitas.pedianeumx.R
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
+import com.qnecesitas.pedianeumx.R
+import com.qnecesitas.pedianeumx.ui.main.interfaces.IBottomAppBar
 import com.qnecesitas.pedianeumx.ui.main.interfaces.ITopAppBar
+import com.qnecesitas.pedianeumx.ui.theme.commonBottomAppBarGradient
 import com.qnecesitas.pedianeumx.ui.theme.commonTopAppBarGradient
 
 
@@ -47,7 +49,6 @@ fun MainTopBar(
             label = "App Bar actions"
         ) { targetState ->
             Row {
-
                 targetState(this@Row)
             }
         }
@@ -82,13 +83,33 @@ fun MainTopBar(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AppNameText(){
-    Text(
-        text =  stringResource(R.string.app_name),
-        style = MaterialTheme.typography.titleLarge.copy(
-            color = MaterialTheme.colorScheme.onPrimaryContainer
-        ),
-    )
+fun MainBottomBar(
+    modifier: Modifier = Modifier,
+    viewModel: IBottomAppBar
+){
 
+    val actionIcon: @Composable (RowScope) -> Unit = {
+        AnimatedContent(
+            targetState = viewModel.rightActions,
+            transitionSpec = { fadeIn() togetherWith fadeOut() },
+            label = "App Bar actions"
+        ) { targetState ->
+            Row {
+                targetState(this@Row)
+            }
+        }
+    }
+
+    Box(
+        modifier.background(brush = commonBottomAppBarGradient)
+    ) {
+        BottomAppBar(
+            modifier = Modifier.fillMaxWidth(),
+            actions = actionIcon,
+            containerColor = colorResource(R.color.transparent),
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        )
+    }
 }
