@@ -106,6 +106,9 @@ fun NavGraphBuilder.generateResult(
                 showDefaultAppNameTitle()
             }
             mainViewModel.bottomAppBarComposer.visible = true
+            mainViewModel.bottomAppBarComposer.showRepeatDefaultAction {
+
+            }
         }
 
         val viewModel = hiltViewModel<ResultViewModel>()

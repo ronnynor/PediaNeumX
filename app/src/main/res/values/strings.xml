@@ -13,5 +13,6 @@
     <string name="warning">Warning</string>
     <string name="crop">Crop</string>
     <string name="repeat">Repeat</string>
+    <string name="results">Results</string>
 
 </resources>
