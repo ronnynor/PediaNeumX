@@ -103,7 +103,9 @@ private fun ResultDetails(
             style = MaterialTheme.typography.titleLarge
         )
 
-        Row(modifier = Modifier.padding(vertical = 4.dp)){
+        Row(modifier = Modifier.padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ){
 
             Image(
                 modifier = Modifier.size(30.dp),
@@ -130,7 +132,8 @@ private fun ResultDetails(
             )
         }
 
-        Row(modifier = Modifier.padding(vertical = 4.dp),){
+        Row(modifier = Modifier.padding(vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically){
 
             Image(
                 modifier = Modifier.size(30.dp),
@@ -171,7 +174,8 @@ fun WarningConfirmWithDoctor(
     ){
         Row(modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 4.dp, vertical = 4.dp)) {
+            .padding(horizontal = 4.dp, vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically) {
 
             Icon(
                 imageVector = Icons.Rounded.Warning,
