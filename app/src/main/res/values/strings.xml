@@ -14,5 +14,6 @@
     <string name="crop">Crop</string>
     <string name="repeat">Repeat</string>
     <string name="results">Results</string>
+    <string name="storage">Storage</string>
 
 </resources>

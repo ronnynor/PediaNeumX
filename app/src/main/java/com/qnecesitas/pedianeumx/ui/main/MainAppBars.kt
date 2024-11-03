@@ -43,13 +43,16 @@ fun MainTopBar(
         }
     }
 
-    val actionIcon: @Composable () -> Unit = {
+    val actionIcon: @Composable (RowScope) -> Unit = {
         AnimatedContent(
             targetState = viewModel.rightActions,
             transitionSpec = { fadeIn() togetherWith fadeOut() },
             label = "App Bar actions"
         ) { targetState ->
-            Row {
+            Row(
+//                modifier = Modifier.fillMaxWidth(),
+//                horizontalArrangement = Arrangement.End
+            ) {
                 targetState(this@Row)
             }
         }
@@ -78,7 +81,7 @@ fun MainTopBar(
             title = titleContent,
             modifier = Modifier.fillMaxWidth(),
             navigationIcon = { navigationIcon },
-            actions = { actionIcon },
+            actions = actionIcon,
             colors = appBarColors
         )
     }

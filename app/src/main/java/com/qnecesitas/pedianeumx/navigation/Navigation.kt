@@ -73,16 +73,19 @@ fun NavGraphBuilder.generateCamera(
         arguments = Routes.Camera.arguments()
     ){
 
+        val cameraViewModel = hiltViewModel<CameraViewModel>()
+        cameraViewModel.navController = navController
+
         LaunchedEffect(Unit) {
             mainViewModel.topAppBarComposer.apply {
                 visible = true
                 showDefaultAppNameTitle()
+                showDefaultStorageOption {
+                    cameraViewModel.useStorageImagePicker = true
+                }
             }
             mainViewModel.bottomAppBarComposer.visible = false
         }
-
-        val cameraViewModel = hiltViewModel<CameraViewModel>()
-        cameraViewModel.navController = navController
 
         CameraView(
             viewModel = cameraViewModel
@@ -104,6 +107,7 @@ fun NavGraphBuilder.generateResult(
             mainViewModel.topAppBarComposer.apply {
                 visible = true
                 showDefaultAppNameTitle()
+                rightActions = {}
             }
             mainViewModel.bottomAppBarComposer.visible = true
             mainViewModel.bottomAppBarComposer.showRepeatDefaultAction {

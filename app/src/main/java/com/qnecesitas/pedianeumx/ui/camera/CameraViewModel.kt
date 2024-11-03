@@ -24,6 +24,8 @@ interface ICameraViewModel :
     IViewModelSetGetParams{
 
     var capturedImageUri: Uri?
+    var useStorageImagePicker: Boolean
+
     fun takePhoto(
         context: Context,
         imageCapture: ImageCapture,
@@ -43,6 +45,7 @@ abstract class BaseCameraViewModel :
 class CameraViewModel @Inject constructor(): BaseCameraViewModel() {
 
     override var capturedImageUri: Uri? by mutableStateOf(null)
+    override var useStorageImagePicker: Boolean by mutableStateOf(false)
     override val scope: CoroutineScope
         get() = viewModelScope
 

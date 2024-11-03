@@ -2,9 +2,10 @@ package com.qnecesitas.pedianeumx.ui.camera
 
 import android.Manifest
 import android.net.Uri
-import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
@@ -22,6 +23,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,8 +41,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.canhub.cropper.CropImageContract
-import com.canhub.cropper.CropImageView
 import com.qnecesitas.pedianeumx.R
 import com.qnecesitas.pedianeumx.ui.permissions.PermissionsUI
 import kotlinx.coroutines.delay
@@ -53,6 +53,9 @@ fun CameraView(
 ){
     val context = LocalContext.current
     val onImageCaptured : (Uri?) -> Unit= { uri->
+        viewModel.capturedImageUri = uri
+    }
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         viewModel.capturedImageUri = uri
     }
 
@@ -68,6 +71,12 @@ fun CameraView(
 
 
 
+    }
+
+    LaunchedEffect(viewModel.useStorageImagePicker) {
+        if (viewModel.useStorageImagePicker) {
+            launchImagePicker(launcher)
+        }
     }
 
 
@@ -203,4 +212,9 @@ fun CameraPreviewer(
         )
     }
 
+}
+
+
+fun launchImagePicker(launcher: ManagedActivityResultLauncher<String, Uri?>) {
+    launcher.launch("image/*")
 }

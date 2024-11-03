@@ -15,5 +15,6 @@ interface ITopAppBar {
 
     fun showDefaultAppNameTitle()
 
+    fun showDefaultStorageOption(onClick: () -> Unit)
 
 }
