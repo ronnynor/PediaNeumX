@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.qnecesitas.pedianeumx.datamodel.Diagnosis
 import com.qnecesitas.pedianeumx.navigation.DefaultSetGetParamsViewModel
 import com.qnecesitas.pedianeumx.navigation.IViewModelSetGetParams
+import com.qnecesitas.pedianeumx.navigation.Routes
 import com.qnecesitas.pedianeumx.utility.FileUtility
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.tensorflow.lite.DataType
@@ -24,6 +25,8 @@ interface IResultViewModel:
     var capturedImageUri: Uri?
     val diagnosisResult: Diagnosis?
     val diagnosisPrecision: Double?
+
+    fun toCameraView()
 }
 
 abstract class BaseResultViewModel:
@@ -45,6 +48,11 @@ class ResultViewModel @Inject constructor(
     override val diagnosisResult: Diagnosis? by mutableStateOf(null)
     override val diagnosisPrecision: Double by mutableDoubleStateOf(0.0)
 
+    override fun toCameraView() {
+        navController.navigate(Routes.Camera.route){
+            popUpTo(Routes.Camera.route) { inclusive = true }
+        }
+    }
 
     fun initModel(context: Context){
         capturedImageUri?.let { capturedImageUri->

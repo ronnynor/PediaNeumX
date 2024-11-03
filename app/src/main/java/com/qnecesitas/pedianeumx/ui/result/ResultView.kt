@@ -78,7 +78,7 @@ fun ResultView(
             WarningConfirmWithDoctor(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
             )
 
         }
@@ -169,7 +169,7 @@ fun WarningConfirmWithDoctor(
     Surface (
         modifier = modifier,
         shape = MaterialTheme.shapes.large,
-        color = MaterialTheme.colorScheme.surface,
+        color = MaterialTheme.colorScheme.inversePrimary,
         shadowElevation = 4.dp
     ){
         Row(modifier = Modifier

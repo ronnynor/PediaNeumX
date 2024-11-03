@@ -1,6 +1,7 @@
 package com.qnecesitas.pedianeumx.navigation
 
 import android.net.Uri
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -87,6 +88,7 @@ fun NavGraphBuilder.generateCamera(
             mainViewModel.bottomAppBarComposer.visible = false
         }
 
+
         CameraView(
             viewModel = cameraViewModel
         )
@@ -103,6 +105,12 @@ fun NavGraphBuilder.generateResult(
         arguments = Routes.Result.arguments()
     ){
 
+        val viewModel = hiltViewModel<ResultViewModel>()
+        viewModel.navController = navController
+        viewModel.GetParam<Uri>(Routes.Result.RESULT_IMAGE_URI_PARAM) { uri->
+            viewModel.capturedImageUri = uri
+        }
+
         LaunchedEffect(Unit) {
             mainViewModel.topAppBarComposer.apply {
                 visible = true
@@ -111,14 +119,8 @@ fun NavGraphBuilder.generateResult(
             }
             mainViewModel.bottomAppBarComposer.visible = true
             mainViewModel.bottomAppBarComposer.showRepeatDefaultAction {
-
+                viewModel.toCameraView()
             }
-        }
-
-        val viewModel = hiltViewModel<ResultViewModel>()
-        viewModel.navController = navController
-        viewModel.GetParam<Uri>(Routes.Result.RESULT_IMAGE_URI_PARAM) { uri->
-            viewModel.capturedImageUri = uri
         }
 
         ResultView(viewModel)
