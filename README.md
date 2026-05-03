@@ -6,6 +6,17 @@ An Android application that leverages on-device Machine Learning to assist in th
 
 ---
 
+## Screenshots
+
+<p align="center">
+  <img src="images/image1.png" width="22%" />
+  <img src="images/image2.png" width="22%" />
+  <img src="images/image3.png" width="22%" />
+  <img src="images/image4.png" width="22%" />
+</p>
+
+---
+
 ## Features
 
 - **X-ray capture** — Take a photo directly with the device camera or import from the gallery
